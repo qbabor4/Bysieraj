@@ -1,5 +1,7 @@
 package com.qbabor4.hibernate.model;
 
+import java.util.UUID;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -22,7 +24,7 @@ public class PersonalData {
 	@Id
 	@GenericGenerator(name = "generator", strategy = "foreign", parameters = @Parameter(name = "property", value = "user"))
 	@GeneratedValue(generator = "generator")
-	private long Id; // id employee
+	private UUID Id; // id employee
 
 	@OneToOne(fetch = FetchType.LAZY)
 	@PrimaryKeyJoinColumn
@@ -32,11 +34,11 @@ public class PersonalData {
 	private String surname;
 	private String mobile;
 
-	public long getId() {
+	public UUID getId() {
 		return Id;
 	}
 
-	public void setId(long id) {
+	public void setId(UUID id) {
 		Id = id;
 	}
 

@@ -1,15 +1,17 @@
 package com.qbabor4.hibernate.model;
 
+import java.util.UUID;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
+
+import org.hibernate.annotations.GenericGenerator;
 
 /**
  * TODO: generować uuid (jakiś błąd chyba jest) (uuid z usera jest inne od uuid
@@ -20,16 +22,16 @@ import javax.persistence.UniqueConstraint;
  */
 
 @Entity
-@Table(name = "USER") // moze sie da bez tego //, uniqueConstraints = { @UniqueConstraint(columnNames = { "ID" }) }
+@Table(name = "USER") //, uniqueConstraints = { @UniqueConstraint(columnNames = { "ID" }) }
 public class User {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID", nullable = false, unique = true, length = 11)
-	// @GeneratedValue(generator = "uuid2")
-	// @GenericGenerator(name = "uuid2", strategy = "uuid2")
-	// @Column(columnDefinition = "BINARY(16)")
-	private long id;
+//	@GeneratedValue(strategy = GenerationType.IDENTITY)
+//	@Column(name = "ID", nullable = false, unique = true, length = 11)
+	@GeneratedValue(generator = "uuid2")
+	@GenericGenerator(name = "uuid2", strategy = "uuid2")
+	@Column(name = "ID", nullable = false, columnDefinition = "BINARY(16)")
+	private UUID id;
 
 	@Column(nullable = false, unique = true, length = 40)
 	private String uname;
@@ -61,11 +63,11 @@ public class User {
 		this.passwdHistory = passwdHistory;
 	}
 
-	public long getId() {
+	public UUID getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(UUID id) {
 		this.id = id;
 	}
 

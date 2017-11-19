@@ -1,5 +1,7 @@
 package com.qbabor4.hibernate.model;
 
+import java.util.UUID;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -17,7 +19,7 @@ public class PasswdHistory {
 	@Id
 	@GenericGenerator(name = "generator", strategy = "foreign", parameters = @Parameter(name = "property", value = "user"))
 	@GeneratedValue(generator = "generator")
-	private long Id; // id employee
+	private UUID Id; // id user
 
 	@OneToOne(fetch = FetchType.LAZY)
 	@PrimaryKeyJoinColumn
@@ -26,11 +28,11 @@ public class PasswdHistory {
 	@Column(nullable = false, length = 40)
 	private String passwd;
 
-	public long getId() {
+	public UUID getId() {
 		return Id;
 	}
 
-	public void setId(long id) {
+	public void setId(UUID id) {
 		Id = id;
 	}
 
