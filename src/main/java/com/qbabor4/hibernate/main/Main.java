@@ -19,8 +19,9 @@ public class Main
 		DatabaseManager databaseManager = new DatabaseManager();
 		databaseManager.startSession();
 
-		//databaseManager.UserPersonalData2();
-		databaseManager.UserPasswdHistory();
+		//databaseManager.userPersonalData2();
+		//databaseManager.userPasswdHistory();
+		databaseManager.bookPublisher();
 		
 		databaseManager.endSession();
 	}

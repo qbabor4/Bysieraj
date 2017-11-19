@@ -41,7 +41,7 @@ public class User {
 	private String passwd;
 	@Column(name = "EMAIL", nullable = false, unique = true, length = 40)
 	private String email;
-	@Column(name = "USER_PRIVILEGES")
+	@Column(name = "USER_PRIVILEGES", length = 6)
 	private Integer userPrivileges;
 	@Column(name = "ENABLED")
 	private Boolean enabled;

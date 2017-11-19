@@ -3,8 +3,11 @@ package com.qbabor4.hibernate.manager;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+import com.qbabor4.hibernate.enums.BookAvability;
+import com.qbabor4.hibernate.model.Book;
 import com.qbabor4.hibernate.model.PasswdHistory;
 import com.qbabor4.hibernate.model.PersonalData;
+import com.qbabor4.hibernate.model.Publisher;
 import com.qbabor4.hibernate.model.User;
 import com.qbabor4.hibernate.util.HibernateUtil;
 
@@ -24,7 +27,7 @@ public class DatabaseManager {
 	}
 	
 	
-	public void UserPersonalData2() {
+	public void userPersonalData2() {
 		User user = new User();
 		user.setEmail("email@lol");
 		user.setPasswd("passw");
@@ -46,7 +49,7 @@ public class DatabaseManager {
 		session.getTransaction().commit();
 	}
 	
-	public void UserPasswdHistory() {
+	public void userPasswdHistory() {
 		User user = new User();
 		user.setEmail("emai3@lol");
 		user.setPasswd("pas4w");
@@ -64,6 +67,28 @@ public class DatabaseManager {
 		session.save(user);
 		//Commit transaction
 		session.getTransaction().commit();
+	}
+	
+	public void bookPublisher() {
+		Book book = new Book();
+		book.setBookAvability(BookAvability.DOSTEPNA);
+		book.setIsbn("isbn:2345");
+		book.setTitle("w puszczy i w puszczy");
+		
+		Publisher publisher = new Publisher();
+		publisher.setCity("NY");
+		publisher.setCountry("Music");
+		publisher.setName("Alfred");
+		
+		book.setPublisher(publisher);
+		
+		//start transaction
+		session.beginTransaction();
+		//Save the Model object
+		session.save(book);
+		//Commit transaction
+		session.getTransaction().commit();
+		
 	}
 	
 	
