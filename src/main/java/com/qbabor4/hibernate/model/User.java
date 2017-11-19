@@ -20,7 +20,7 @@ import javax.persistence.UniqueConstraint;
  */
 
 @Entity
-@Table(name = "User", uniqueConstraints = { @UniqueConstraint(columnNames = { "ID" }) }) // moze sie da bez tego
+@Table(name = "USER") // moze sie da bez tego //, uniqueConstraints = { @UniqueConstraint(columnNames = { "ID" }) }
 public class User {
 
 	@Id
@@ -39,7 +39,27 @@ public class User {
 	private String email;
 
 	@OneToOne(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
-	private PersonalData2 personalData2;
+	private PersonalData personalData;
+	
+	@OneToOne(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
+	private PasswdHistory passwdHistory;
+
+	
+	public PersonalData getPersonalData() {
+		return personalData;
+	}
+
+	public void setPersonalData(PersonalData personalData) {
+		this.personalData = personalData;
+	}
+
+	public PasswdHistory getPasswdHistory() {
+		return passwdHistory;
+	}
+
+	public void setPasswdHistory(PasswdHistory passwdHistory) {
+		this.passwdHistory = passwdHistory;
+	}
 
 	public long getId() {
 		return id;
@@ -71,14 +91,6 @@ public class User {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public PersonalData2 getPersonalData2() {
-		return personalData2;
-	}
-
-	public void setPersonalData2(PersonalData2 personalData2) {
-		this.personalData2 = personalData2;
 	}
 
 }

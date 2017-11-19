@@ -27,15 +27,13 @@
 		<property name="cache.provider_class">org.hibernate.cache.internal.NoCacheProvider</property>
 
 		<!-- Drop and re-create the database schema on startup -->
-		<property name="hbm2ddl.auto">update</property>
+		<property name="hbm2ddl.auto">create</property>
 
 		<!-- Mapping with model class containing annotations -->
-		<mapping class="com.qbabor4.hibernate.model.Employee1" />
-		<mapping class="com.qbabor4.hibernate.model.PersonalData" />
-		
 		<!--  bysieraj tables  -->
 		<mapping class="com.qbabor4.hibernate.model.User" />
-		<mapping class="com.qbabor4.hibernate.model.PersonalData2" />
+		<mapping class="com.qbabor4.hibernate.model.PersonalData" />
+		<mapping class="com.qbabor4.hibernate.model.PasswdHistory" />
 		
 	</session-factory>
 </hibernate-configuration>
