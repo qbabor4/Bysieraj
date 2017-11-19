@@ -23,7 +23,6 @@ public class Publisher {
 	@Id
 	@GeneratedValue(generator = "uuid2")
 	@GenericGenerator(name = "uuid2", strategy = "uuid2")
-	@Column(name = "loool")
 	private UUID uuid;
 
 	@Column(name = "NAME")

@@ -21,7 +21,7 @@ public class Main
 
 		//databaseManager.userPersonalData2();
 		//databaseManager.userPasswdHistory();
-		databaseManager.bookPublisher();
+		databaseManager.bookTwoPublisher();
 		
 		databaseManager.endSession();
 	}

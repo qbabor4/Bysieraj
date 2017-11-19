@@ -91,5 +91,34 @@ public class DatabaseManager {
 		
 	}
 	
+	public void bookTwoPublisher() {
+		Book book = new Book();
+		book.setBookAvability(BookAvability.SERWIS);
+		book.setIsbn("isbn:2345");
+		book.setTitle("pan taboret");
+		
+		Book book2 = new Book();
+		book2.setBookAvability(BookAvability.DOSTEPNA);
+		book2.setIsbn("isbn:fr345");
+		book2.setTitle("w puszczy i w jeszcze wiekszej puszczy");
+		
+		Publisher publisher = new Publisher();
+		publisher.setCity("CHORZÓW");
+		publisher.setCountry("POLAND");
+		publisher.setName("Seba");
+		
+		book.setPublisher(publisher);
+		book2.setPublisher(publisher);
+		
+		//start transaction
+		session.beginTransaction();
+		//Save the Model object
+		session.save(book);
+		session.save(book2);
+		//Commit transaction
+		session.getTransaction().commit();
+		
+	}
+	
 	
 }

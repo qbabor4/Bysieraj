@@ -14,6 +14,7 @@ import javax.persistence.ManyToOne;
 import org.hibernate.annotations.GenericGenerator;
 
 import com.qbabor4.hibernate.enums.BookAvability;
+import com.qbabor4.hibernate.enums.BookQuality;
 
 /**
  * Jakoś zrobić stringa z enuma opisy do kolumn jakos moze dodac
@@ -47,7 +48,8 @@ public class Book {
 //	@Column(name = "DESCRIPTION", length = 40)
 //	private String description;
 //	@Column(name = "QUALITY", length = 20)
-//	private String quality;
+//	@Enumerated(EnumType.STRING)
+//	private BookQuality quality;
 //	@Column(name = "LOCATION") // nullable = false
 //	private UUID location; // łączenie z biblioteką
 //	@Column(name = "LOCATION_DEPT") // nullable = false
