@@ -19,13 +19,14 @@ public class PasswdHistory {
 	@Id
 	@GenericGenerator(name = "generator", strategy = "foreign", parameters = @Parameter(name = "property", value = "user"))
 	@GeneratedValue(generator = "generator")
-	private UUID Id; // id user
+	@Column(name = "UUID", nullable = false, columnDefinition = "BINARY(16)")
+	private UUID Id; // uuid of User
 
 	@OneToOne(fetch = FetchType.LAZY)
 	@PrimaryKeyJoinColumn
 	private User user;
 
-	@Column(nullable = false, length = 40)
+	@Column(name = "PASSWD", nullable = false, length = 40)
 	private String passwd;
 
 	public UUID getId() {

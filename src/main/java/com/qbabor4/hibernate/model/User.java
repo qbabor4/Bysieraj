@@ -1,5 +1,6 @@
 package com.qbabor4.hibernate.model;
 
+import java.sql.Date;
 import java.util.UUID;
 
 import javax.persistence.CascadeType;
@@ -10,6 +11,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -22,31 +25,91 @@ import org.hibernate.annotations.GenericGenerator;
  */
 
 @Entity
-@Table(name = "USER") //, uniqueConstraints = { @UniqueConstraint(columnNames = { "ID" }) }
+@Table(name = "USER") // , uniqueConstraints = { @UniqueConstraint(columnNames = { "ID" }) }
 public class User {
 
 	@Id
-//	@GeneratedValue(strategy = GenerationType.IDENTITY)
-//	@Column(name = "ID", nullable = false, unique = true, length = 11)
+	// @GeneratedValue(strategy = GenerationType.IDENTITY)
+	// @Column(name = "ID", nullable = false, unique = true, length = 11)
 	@GeneratedValue(generator = "uuid2")
 	@GenericGenerator(name = "uuid2", strategy = "uuid2")
-	@Column(name = "ID", nullable = false, columnDefinition = "BINARY(16)")
+	@Column(name = "UUID", nullable = false, columnDefinition = "BINARY(16)")
 	private UUID id;
-
-	@Column(nullable = false, unique = true, length = 40)
+	@Column(name = "UNAME", nullable = false, unique = true, length = 40)
 	private String uname;
-	@Column(nullable = false, length = 40)
+	@Column(name = "PASSWD", nullable = false, length = 40)
 	private String passwd;
-	@Column(nullable = false, unique = true, length = 40)
+	@Column(name = "EMAIL", nullable = false, unique = true, length = 40)
 	private String email;
+	@Column(name = "USER_PRIVILEGES")
+	private Integer userPrivileges;
+	@Column(name = "ENABLED")
+	private Boolean enabled;
+	@Column(name = "LAPSE_PASS")
+	private Boolean lapsePasswd;
+	@Column(name = "LAPSE_TIME")
+	private Integer lapseTime;
+	@Temporal(TemporalType.DATE)
+	@Column(name = "PASSWD_SET")
+	private java.util.Date passwdSet;
+	@Column(name = "FORCE_CHANGE")
+	private Boolean forceChange;
 
+	// łączenia tabel
 	@OneToOne(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
 	private PersonalData personalData;
-	
+
 	@OneToOne(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
 	private PasswdHistory passwdHistory;
 
-	
+	public Integer getUserPrivileges() {
+		return userPrivileges;
+	}
+
+	public void setUserPrivileges(Integer userPrivileges) {
+		this.userPrivileges = userPrivileges;
+	}
+
+	public Boolean getEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(Boolean enabled) {
+		this.enabled = enabled;
+	}
+
+	public Boolean getLapsePasswd() {
+		return lapsePasswd;
+	}
+
+	public void setLapsePasswd(Boolean lapsePasswd) {
+		this.lapsePasswd = lapsePasswd;
+	}
+
+	public Integer getLapseTime() {
+		return lapseTime;
+	}
+
+	public void setLapseTime(Integer lapseTime) {
+		this.lapseTime = lapseTime;
+	}
+
+	public java.util.Date getPasswdSet() {
+		return passwdSet;
+	}
+
+	public void setPasswdSet(java.util.Date passwdSet) {
+		this.passwdSet = passwdSet;
+	}
+
+	public Boolean getForceChange() {
+		return forceChange;
+	}
+
+	public void setForceChange(Boolean forceChange) {
+		this.forceChange = forceChange;
+	}
+
 	public PersonalData getPersonalData() {
 		return personalData;
 	}

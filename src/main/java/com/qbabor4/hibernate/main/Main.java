@@ -8,6 +8,7 @@ import com.qbabor4.hibernate.manager.DatabaseManager;
  * Co jak dodam sam personalData bez usera
  * zrobić DAO do encji
  * może listy encji dac jako sety
+ * dostac uuid i porównać czy jest takie same jak przed wyciagnieciem z tabeli
  * 
  * @author Jakub
  *
