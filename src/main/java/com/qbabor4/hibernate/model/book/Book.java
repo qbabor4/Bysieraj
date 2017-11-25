@@ -1,4 +1,4 @@
-package com.qbabor4.hibernate.model;
+package com.qbabor4.hibernate.model.book;
 
 import java.util.UUID;
 
@@ -39,25 +39,25 @@ public class Book {
 	private String isbn;
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Publisher publisher; // łączenie z publisherem (uuid publishera) (chyba wiele do jednego) // @Column(name = "PUBLISHER", length = 40) // nullable = false
-//	@Column(name = "YEAR", nullable = false, length = 4)
-//	private Integer year;
-//	@Column(name = "EDITION", nullable = false, length = 40)
-//	private String edition;
+	@Column(name = "YEAR", nullable = false, length = 4)
+	private Integer year;
+	@Column(name = "EDITION", nullable = false, length = 40)
+	private String edition;
 //	@Column(name = "SERIES")
 //	private UUID series; // łaczenie z series (uuid series) nazwa serii (chyba wiele do jednego)
-//	@Column(name = "DESCRIPTION", length = 40)
-//	private String description;
-//	@Column(name = "QUALITY", length = 20)
-//	@Enumerated(EnumType.STRING)
-//	private BookQuality quality;
+	@Column(name = "DESCRIPTION", length = 140)
+	private String description;
+	@Column(name = "QUALITY", length = 20)
+	@Enumerated(EnumType.STRING)
+	private BookQuality quality;
 //	@Column(name = "LOCATION") // nullable = false
 //	private UUID location; // łączenie z biblioteką
 //	@Column(name = "LOCATION_DEPT") // nullable = false
 //	private UUID locationDept; // łączenie z departamentem lokacji
-//	@Column(name = "SIGNATURE", nullable = false, length = 100)
-//	private String signature;
-//	@Column(name = "BOOK_COMMENT", length = 400)
-//	private String bookComment;
+	@Column(name = "SIGNATURE", nullable = false, length = 100)
+	private String signature;
+	@Column(name = "BOOK_COMMENT", length = 400)
+	private String bookComment;
 //	@Column(name = "LANGUAGE", length = 40) // nullable = false
 //	private UUID language;
 //	@Column(name = "ORIGIN")
@@ -103,22 +103,22 @@ public class Book {
 		this.publisher = publisher;
 	}
 
-//	public Integer getYear() {
-//		return year;
-//	}
-//
-//	public void setYear(Integer year) {
-//		this.year = year;
-//	}
-//
-//	public String getEdition() {
-//		return edition;
-//	}
-//
-//	public void setEdition(String edition) {
-//		this.edition = edition;
-//	}
-//
+	public Integer getYear() {
+		return year;
+	}
+
+	public void setYear(Integer year) {
+		this.year = year;
+	}
+
+	public String getEdition() {
+		return edition;
+	}
+
+	public void setEdition(String edition) {
+		this.edition = edition;
+	}
+
 //	public UUID getSeries() {
 //		return series;
 //	}
@@ -126,23 +126,23 @@ public class Book {
 //	public void setSeries(UUID series) {
 //		this.series = series;
 //	}
-//
-//	public String getDescription() {
-//		return description;
-//	}
-//
-//	public void setDescription(String description) {
-//		this.description = description;
-//	}
-//
-//	public String getQuality() {
-//		return quality;
-//	}
-//
-//	public void setQuality(String quality) {
-//		this.quality = quality;
-//	}
-//
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public BookQuality getQuality() {
+		return quality;
+	}
+
+	public void setQuality(BookQuality quality) {
+		this.quality = quality;
+	}
+
 //	public UUID getLocation() {
 //		return location;
 //	}
@@ -158,23 +158,23 @@ public class Book {
 //	public void setLocationDept(UUID locationDept) {
 //		this.locationDept = locationDept;
 //	}
-//
-//	public String getSignature() {
-//		return signature;
-//	}
-//
-//	public void setSignature(String signature) {
-//		this.signature = signature;
-//	}
-//
-//	public String getBookComment() {
-//		return bookComment;
-//	}
-//
-//	public void setBookComment(String bookComment) {
-//		this.bookComment = bookComment;
-//	}
-//
+
+	public String getSignature() {
+		return signature;
+	}
+
+	public void setSignature(String signature) {
+		this.signature = signature;
+	}
+
+	public String getBookComment() {
+		return bookComment;
+	}
+
+	public void setBookComment(String bookComment) {
+		this.bookComment = bookComment;
+	}
+
 //	public UUID getLanguage() {
 //		return language;
 //	}

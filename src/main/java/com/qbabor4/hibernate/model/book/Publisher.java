@@ -1,4 +1,4 @@
-package com.qbabor4.hibernate.model;
+package com.qbabor4.hibernate.model.book;
 
 import java.util.UUID;
 

@@ -1,4 +1,4 @@
-package com.qbabor4.hibernate.model;
+package com.qbabor4.hibernate.model.user;
 
 import java.sql.Date;
 import java.util.UUID;
