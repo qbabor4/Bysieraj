@@ -31,12 +31,12 @@
 
 		<!-- Mapping with model class containing annotations -->
 		<!--  user tables  -->
-		<mapping class="com.qbabor4.hibernate.model.User" />
-		<mapping class="com.qbabor4.hibernate.model.PersonalData" />
-		<mapping class="com.qbabor4.hibernate.model.PasswdHistory" />
+		<mapping class="com.qbabor4.hibernate.model.user.User" />
+		<mapping class="com.qbabor4.hibernate.model.user.PersonalData" />
+		<mapping class="com.qbabor4.hibernate.model.user.PasswdHistory" />
 		<!--  books tables  -->
-		<mapping class="com.qbabor4.hibernate.model.Book" />
-		<mapping class="com.qbabor4.hibernate.model.Publisher" />
+		<mapping class="com.qbabor4.hibernate.model.book.Book" />
+		<mapping class="com.qbabor4.hibernate.model.book.Publisher" />
 		
 		
 	</session-factory>

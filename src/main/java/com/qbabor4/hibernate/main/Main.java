@@ -1,5 +1,7 @@
 package com.qbabor4.hibernate.main;
 
+import java.util.List;
+
 import com.qbabor4.hibernate.manager.DatabaseManager;
 import com.qbabor4.hibernate.model.book.Publisher;
 
@@ -12,11 +14,14 @@ import com.qbabor4.hibernate.model.book.Publisher;
  * Czym sie różni obustronna od jednostronnej?
  * łapać jak ktś nie poda notnulla
  * zwracanie listy ksiazek autora i journali
+ * update 
+ * zrobić dao do publishera (jak dac tam session facotry?) Generyki? (bez autowired)
+ * 
+ * Jak zrobić tego autora, żeby było tylko po stronie bazy??? bedzie wiele do wielu relacja
  * 
  * Pomysły:
  * Może name w publisher bedzie unique? (po czym trzeba szukac)
  * Description w book dłuższe?
- * Dlaczgo w book nie ma odniesienia do autora?
  * birth w autorze jako data?
  * @author Jakub
  *
@@ -31,8 +36,11 @@ public class Main
 		databaseManager.userPasswdHistory();
 		databaseManager.bookTwoPublisher();
 		
-		Publisher publisherSeba = databaseManager.getPublisherByName("Seba");
-		System.out.println(publisherSeba.getCountry());
+		List<Publisher> publisherList = databaseManager.getPublisherByName("Seba");
+		//System.out.println(publisherSeba.getCountry());
+		for (Publisher publisher: publisherList) {
+			System.out.println(publisher.getCity());
+		}
 		
 		databaseManager.endSession();
 	}
