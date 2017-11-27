@@ -1,6 +1,5 @@
 package com.qbabor4.hibernate.model.book;
 
-import java.io.Serializable;
 import java.util.UUID;
 
 import javax.persistence.Column;
@@ -19,11 +18,7 @@ import org.hibernate.annotations.GenericGenerator;
  */
 @Entity
 @Table(name = "PUBLISHER")
-public class Publisher implements Serializable{
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -154500622635581411L;
+public class Publisher{
 
 	@Id
 	@GeneratedValue(generator = "uuid2")

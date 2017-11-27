@@ -2,8 +2,12 @@ package com.qbabor4.hibernate.main;
 
 import java.util.List;
 
+import org.hibernate.Session;
+
 import com.qbabor4.hibernate.manager.DatabaseManager;
 import com.qbabor4.hibernate.model.book.Publisher;
+import com.qbabor4.hibernate.model.book.PublisherDAO;
+import com.qbabor4.hibernate.util.HibernateUtil;
 
 
 /**
@@ -16,6 +20,7 @@ import com.qbabor4.hibernate.model.book.Publisher;
  * zwracanie listy ksiazek autora i journali
  * update 
  * zrobić dao do publishera (jak dac tam session facotry?) Generyki? (bez autowired)
+ * Jak dobrze uzywac DAO
  * 
  * Jak zrobić tego autora, żeby było tylko po stronie bazy??? bedzie wiele do wielu relacja
  * 
@@ -29,19 +34,32 @@ import com.qbabor4.hibernate.model.book.Publisher;
 public class Main 
 {
 	public static void main(String[] args) {
-		DatabaseManager databaseManager = new DatabaseManager();
-		databaseManager.startSession();
-
-		databaseManager.userPersonalData2();
-		databaseManager.userPasswdHistory();
-		databaseManager.bookTwoPublisher();
+//		DatabaseManager databaseManager = new DatabaseManager();
+//		databaseManager.startSession();
+//
+//		databaseManager.userPersonalData2();
+//		databaseManager.userPasswdHistory();
+//		databaseManager.bookTwoPublisher();
+//		
+//		List<Publisher> publisherList = databaseManager.getPublisherByName("Seba");
+//		//System.out.println(publisherSeba.getCountry());
+//		for (Publisher publisher: publisherList) {
+//			System.out.println(publisher.getCity());
+//		}
+		Session session = HibernateUtil.getSessionFactory().openSession();
 		
-		List<Publisher> publisherList = databaseManager.getPublisherByName("Seba");
-		//System.out.println(publisherSeba.getCountry());
-		for (Publisher publisher: publisherList) {
-			System.out.println(publisher.getCity());
-		}
+		Publisher pub = new Publisher();
+		pub.setCity("NY");
+		pub.setName("albert");
+		pub.setCountry("America Baby!");
 		
-		databaseManager.endSession();
+		PublisherDAO pDAO = new PublisherDAO(Publisher.class);
+		pDAO.setSession(session);
+		session.beginTransaction();
+		pDAO.save(pub);
+		session.getTransaction().commit();
+		
+		HibernateUtil.getSessionFactory().close();
+//		databaseManager.endSession();
 	}
 }

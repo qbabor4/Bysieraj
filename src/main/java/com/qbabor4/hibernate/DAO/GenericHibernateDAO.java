@@ -1,16 +1,13 @@
 package com.qbabor4.hibernate.DAO;
 
-import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.UUID;
 
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import javax.transaction.Transactional;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
-
-import com.qbabor4.hibernate.model.book.Publisher;
 
 /** 
  * Provides generic common implementation of IGeanericDAO interface persistence methods.
@@ -18,7 +15,8 @@ import com.qbabor4.hibernate.model.book.Publisher;
  * 
  * @author Jakub
  */
-public abstract class GenericHibernateDAO<T, ID extends Serializable> implements IGenericDAO<T, ID> {
+@Transactional // zobaczyc czy nie trzeba tego dawac w każdym DAO
+public abstract class GenericHibernateDAO<T> implements IGenericDAO<T> {
 	
 	private Class<T> hibernateClass;
 	
@@ -29,10 +27,11 @@ public abstract class GenericHibernateDAO<T, ID extends Serializable> implements
 	}
 	
 	protected Session getSession() {
-		return session;
+		if (session == null)  
+            throw new IllegalStateException("Session has not been set on DAO before usage");  
+        return session;  
 	}
 
-	@PersistenceContext // co to robi? When the apliction starts we need to point Where to enter EntityManager implentation (zobaczyc czy jest takie do Session)
 	public void setSession(Session session) {
 		this.session = session;
 	}
@@ -41,12 +40,12 @@ public abstract class GenericHibernateDAO<T, ID extends Serializable> implements
 		return hibernateClass;
 	}
 	
-	public T save(T entity) {
-		getSession().save(entity); // może tu z session.beginTransaction(); i commit ?
+	public T saveOrUpdate(T entity) {
+		getSession().saveOrUpdate(entity); // może tu z session.beginTransaction(); i commit ?
 		return entity;
 	}
 		
-	public T update(T entity) {
+	public T merge(T entity) {
 		getSession().merge(entity);
 		return entity;
 	}
@@ -55,9 +54,9 @@ public abstract class GenericHibernateDAO<T, ID extends Serializable> implements
 		getSession().delete(entity);
 	}
 	
-	public T findById(ID id) { 
+	public T findById(UUID id) { 
 		return (T) getSession().get(getHibernateClass(), id);	
-		// zrobić jakiegoś ifa jak instancja czegoś to zwróć
+		// zrobić jakiegoś ifa jak instancja czegoś to zwróć (bo ma problemy z unchecked...)
 	}
 	
 	public List<T> findAll(){
@@ -73,5 +72,10 @@ public abstract class GenericHibernateDAO<T, ID extends Serializable> implements
 	public void flush() {
 		getSession().flush();
 	}
+	
+
+    public void clear() {  
+        getSession().clear();  
+    }  
 	
 }

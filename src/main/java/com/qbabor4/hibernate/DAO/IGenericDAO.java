@@ -2,6 +2,7 @@ package com.qbabor4.hibernate.DAO;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Generic interface for Data Access Objects. TO be extended or implemented
@@ -9,7 +10,7 @@ import java.util.List;
  * 
  * @author Jakub
  */
-public interface IGenericDAO<T, ID extends Serializable> {
+public interface IGenericDAO<T> {
 	
 	T save(T entity);
 	
@@ -17,7 +18,7 @@ public interface IGenericDAO<T, ID extends Serializable> {
 	
 	void delete(T entity);
 	
-	T findById(ID id); // tu jak zawssze bedzie uuid, to może nie podawać na górze typu id 
+	T findById(UUID id); 
 	
 	List<T> findAll();
 	
