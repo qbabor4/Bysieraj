@@ -12,9 +12,9 @@ import java.util.UUID;
  */
 public interface IGenericDAO<T> {
 	
-	T save(T entity);
+	T saveOrUpdate(T entity);
 	
-	T update(T entity);
+	public T merge(T entity);
 	
 	void delete(T entity);
 	

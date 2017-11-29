@@ -1,5 +1,7 @@
 package com.qbabor4.hibernate.model.book;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import javax.persistence.CascadeType;
@@ -9,6 +11,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -38,30 +41,43 @@ public class Book {
 	@Column(name = "ISBN", nullable = false, length = 40)
 	private String isbn;
 	@ManyToOne(cascade = CascadeType.ALL)
-	private Publisher publisher; // łączenie z publisherem (uuid publishera) (chyba wiele do jednego) // @Column(name = "PUBLISHER", length = 40) // nullable = false
+	private Publisher publisher; // łączenie z publisherem (uuid publishera) (chyba wiele do jednego) //
+									// @Column(name = "PUBLISHER", length = 40) // nullable = false
 	@Column(name = "YEAR", nullable = false, length = 4)
 	private Integer year;
 	@Column(name = "EDITION", nullable = false, length = 40)
 	private String edition;
-//	@Column(name = "SERIES")
-//	private UUID series; // łaczenie z series (uuid series) nazwa serii (chyba wiele do jednego)
+	// @Column(name = "SERIES")
+	// private UUID series; // łaczenie z series (uuid series) nazwa serii (chyba
+	// wiele do jednego)
 	@Column(name = "DESCRIPTION", length = 140)
 	private String description;
 	@Column(name = "QUALITY", length = 20)
 	@Enumerated(EnumType.STRING)
 	private BookQuality quality;
-//	@Column(name = "LOCATION") // nullable = false
-//	private UUID location; // łączenie z biblioteką
-//	@Column(name = "LOCATION_DEPT") // nullable = false
-//	private UUID locationDept; // łączenie z departamentem lokacji
+	// @Column(name = "LOCATION") // nullable = false
+	// private UUID location; // łączenie z biblioteką
+	// @Column(name = "LOCATION_DEPT") // nullable = false
+	// private UUID locationDept; // łączenie z departamentem lokacji
 	@Column(name = "SIGNATURE", nullable = false, length = 100)
 	private String signature;
 	@Column(name = "BOOK_COMMENT", length = 400)
 	private String bookComment;
-//	@Column(name = "LANGUAGE", length = 40) // nullable = false
-//	private UUID language;
-//	@Column(name = "ORIGIN")
-//	private UUID origin; // kraj pochodzenia
+	// @Column(name = "LANGUAGE", length = 40) // nullable = false
+	// private UUID language;
+	// @Column(name = "ORIGIN")
+	// private UUID origin; // kraj pochodzenia
+
+	@ManyToMany(cascade = CascadeType.ALL, mappedBy = "bookEntities")
+	private List<Author> authorEntities = new ArrayList<>();
+
+	public List<Author> getAuthorEntities() {
+		return authorEntities;
+	}
+
+	public void setAuthorEntities(List<Author> authorEntities) {
+		this.authorEntities = authorEntities;
+	}
 
 	public UUID getId() {
 		return id;
@@ -119,13 +135,13 @@ public class Book {
 		this.edition = edition;
 	}
 
-//	public UUID getSeries() {
-//		return series;
-//	}
-//
-//	public void setSeries(UUID series) {
-//		this.series = series;
-//	}
+	// public UUID getSeries() {
+	// return series;
+	// }
+	//
+	// public void setSeries(UUID series) {
+	// this.series = series;
+	// }
 
 	public String getDescription() {
 		return description;
@@ -143,21 +159,21 @@ public class Book {
 		this.quality = quality;
 	}
 
-//	public UUID getLocation() {
-//		return location;
-//	}
-//
-//	public void setLocation(UUID location) {
-//		this.location = location;
-//	}
-//
-//	public UUID getLocationDept() {
-//		return locationDept;
-//	}
-//
-//	public void setLocationDept(UUID locationDept) {
-//		this.locationDept = locationDept;
-//	}
+	// public UUID getLocation() {
+	// return location;
+	// }
+	//
+	// public void setLocation(UUID location) {
+	// this.location = location;
+	// }
+	//
+	// public UUID getLocationDept() {
+	// return locationDept;
+	// }
+	//
+	// public void setLocationDept(UUID locationDept) {
+	// this.locationDept = locationDept;
+	// }
 
 	public String getSignature() {
 		return signature;
@@ -175,20 +191,20 @@ public class Book {
 		this.bookComment = bookComment;
 	}
 
-//	public UUID getLanguage() {
-//		return language;
-//	}
-//
-//	public void setLanguage(UUID language) {
-//		this.language = language;
-//	}
-//
-//	public UUID getOrigin() {
-//		return origin;
-//	}
-//
-//	public void setOrigin(UUID origin) {
-//		this.origin = origin;
-//	}
+	// public UUID getLanguage() {
+	// return language;
+	// }
+	//
+	// public void setLanguage(UUID language) {
+	// this.language = language;
+	// }
+	//
+	// public UUID getOrigin() {
+	// return origin;
+	// }
+	//
+	// public void setOrigin(UUID origin) {
+	// this.origin = origin;
+	// }
 
 }

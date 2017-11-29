@@ -37,6 +37,8 @@
 		<!--  books tables  -->
 		<mapping class="com.qbabor4.hibernate.model.book.Book" />
 		<mapping class="com.qbabor4.hibernate.model.book.Publisher" />
+		<mapping class="com.qbabor4.hibernate.model.book.Author" />
+		
 		
 		
 	</session-factory>
